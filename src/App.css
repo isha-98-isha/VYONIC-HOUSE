@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --blue: #3677f2;
+  --paper: #ece9e2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ─── App shell: full viewport height, flex column ─── */
+.app-shell {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  color: var(--paper);
+  background: #090a09;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── Main: compensated for fixed 36px header ─── */
+main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0px;
+}
+
