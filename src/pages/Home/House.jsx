@@ -37,7 +37,9 @@ function Home() {
           </p>
 
           <h1 className="hero-title max-[900px]:!max-w-full max-[900px]:!text-[clamp(58px,18vw,78px)] max-[900px]:!leading-[0.88] max-[900px]:!tracking-[-1px]">
-            BECOME WHO YOU WERE <span>BUILT TO BE</span>.
+            BECOME WHO YOU
+            <br />
+            WERE <span>BUILT TO BE</span>.
           </h1>
 
           <p className="hero-description max-[900px]:!mx-0 max-[900px]:!mt-8 max-[900px]:!max-w-[290px] max-[900px]:!text-[15px] max-[900px]:!leading-[1.45]">
@@ -184,18 +186,27 @@ function Home() {
         </section>
 
         <section className="assessment-section max-[900px]:!w-[calc(100%-32px)] max-[900px]:!flex-col max-[900px]:!items-start max-[900px]:!gap-8 max-[900px]:!px-0">
-          <h2>
-            EVERY JOURNEY BEGINS WITH
-            <br />
-            <span>AN ASSESSMENT</span>.
+          <h2 className="max-[900px]:!text-[32px] max-[900px]:!leading-[0.88] max-[900px]:!tracking-0 max-[900px]:!transform-none">
+                        EVERY JOURNEY BEGINS
+            <br className="hidden max-[900px]:block" />
+                        {' '}WITH
+            <br className="max-[900px]:hidden" />
+            <span> AN ASSESSMENT</span>.
           </h2>
-          <button className="assessment-button" type="button">
-            BEGIN
+          <button className="assessment-button 
+          max-[900px]:!gap-3 
+          max-[900px]:!px-5 
+          max-[900px]:!py-[14px] 
+          max-[900px]:!text-[12px] 
+          max-[900px]:!tracking-[2px] 
+          max-[900px]:!transform-none" 
+          type="button">
+            <span className="inline-block max-[900px]:!scale-y-[1.3]">BEGIN</span>
             <ArrowRight aria-hidden="true" />
           </button>
         </section>
 
-        <footer className="site-footer max-[900px]:!w-[calc(100%-32px)] max-[900px]:!flex-col max-[900px]:!items-start max-[900px]:!gap-6">
+        <footer className="site-footer max-[900px]:!grid max-[900px]:!h-[102px] max-[900px]:!w-[calc(100%-32px)] max-[900px]:!grid-cols-2 max-[900px]:!items-start max-[900px]:!gap-0 max-[900px]:!px-4 max-[900px]:!py-7">
 
           <div className="footer-brand">
             <img src={vyonicMark} alt="VYONIC Logo" />
@@ -204,11 +215,11 @@ function Home() {
             <h3>HOUSE</h3>
           </div>
 
-          <span className="footer-city">
+          <span className="footer-city max-[900px]:!top-0 max-[900px]:!col-span-2 max-[900px]:!row-start-2 max-[900px]:!mt-4 max-[900px]:!mb-0 max-[900px]:!justify-self-center max-[900px]:!text-[10px] max-[900px]:!tracking-[3px]">
             DUBAI · LONDON · GLOBAL
           </span>
 
-          <span className="footer-copy">
+          <span className="footer-copy max-[900px]:!justify-self-end max-[900px]:!text-[10px] max-[900px]:!tracking-[2px]">
             © VYONIC
           </span>
 
