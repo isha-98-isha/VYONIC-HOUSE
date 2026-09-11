@@ -19,39 +19,33 @@ function Home() {
       <Navbar />
 
       <main className="home">
-        <section className="hero max-[900px]:!min-h-0 max-[900px]:!px-6 max-[900px]:!pb-16 max-[900px]:!pt-32 max-[900px]:!pl-0">
-          <p className="signin-link max-[900px]:!left-6 max-[900px]:!m-0 max-[900px]:!top-20">
+        <section className="hero max-[900px]:!min-h-0 max-[900px]:!w-full max-[900px]:!px-4 max-[900px]:!pb-16 max-[900px]:!pt-32 max-[900px]:!pl-4">
+          <p className="signin-link max-[900px]:!top-16 max-[900px]:!right-4 max-[900px]:!left-auto max-[900px]:!m-0 max-[900px]:!text-[10px]">
             <a href="/signup">SIGN IN</a>
           </p>
-          <div className="hero-content">
+          <div className="hero-content max-[900px]:!top-16 max-[900px]:!left-4 max-[900px]:!m-0 max-[900px]:!text-[11px]">
             <p> 
               <img src={vyonicMark} alt="VYONIC Logo" /> 
                 VYONIC 
             <span>•</span> 
-            <span1>HOUSE</span1>
+                <span className="max-[900px]:!text-[10px] max-[900px]:!tracking-[3px] max-[900px]:!text-[#b6acac]">HOUSE</span>
             </p>
           </div>
 
-          <p className="hero-eyebrow">
+          <p className="hero-eyebrow max-[900px]:!mx-0 max-[900px]:!mb-7 max-[900px]:!mt-7 max-[900px]:!text-[9px] max-[900px]:!tracking-[2px]">
             DUBAI • PERFORMANCE GYM
           </p>
 
-          <h1 className="hero-title max-[900px]:!text-[clamp(76px,18vw,150px)] max-[900px]:!tracking-[1px]">
-            BECOME
-            <br />
-            WHO YOU
-            <br />
-            WERE <span>BUILT</span>
-            <br />
-            <span>TO BE</span>.
+          <h1 className="hero-title max-[900px]:!max-w-full max-[900px]:!text-[clamp(58px,18vw,78px)] max-[900px]:!leading-[0.88] max-[900px]:!tracking-[-1px]">
+            BECOME WHO YOU WERE <span>BUILT TO BE</span>.
           </h1>
 
-          <p className="hero-description">
+          <p className="hero-description max-[900px]:!mx-0 max-[900px]:!mt-8 max-[900px]:!max-w-[290px] max-[900px]:!text-[15px] max-[900px]:!leading-[1.45]">
             A performance gym built around you — data-led,
             tech-enabled, human-coached.
           </p>
 
-          <button className="hero-button">
+          <button className="hero-button max-[900px]:!mt-7 max-[900px]:!max-w-full max-[900px]:!px-4 max-[900px]:!text-[10px] max-[900px]:!tracking-[2px]">
             START WITH YOUR ASSESSMENT
             <span>→</span>
           </button>
