@@ -32,17 +32,17 @@ function Home() {
             </p>
           </div>
 
-          <p className="hero-eyebrow max-[900px]:!mx-0 max-[900px]:!mb-7 max-[900px]:!mt-7 max-[900px]:!text-[9px] max-[900px]:!tracking-[2px]">
+          <p className="hero-eyebrow max-[900px]:!mx-0 max-[900px]:!mb-7 max-[900px]:!mt-30 max-[900px]:!pl-3 max-[900px]:!text-[10px] max-[900px]:!tracking-[2px] max-[900px]:!origin-left">
             DUBAI • PERFORMANCE GYM
           </p>
 
-          <h1 className="hero-title max-[900px]:!max-w-full max-[900px]:!text-[clamp(58px,18vw,78px)] max-[900px]:!leading-[0.88] max-[900px]:!tracking-[-1px]">
+          <h1 className="hero-title max-[900px]:!max-w-full max-[900px]:!pl-3 max-[900px]:!text-[clamp(50px,16vw,60px)] max-[900px]:!leading-[0.88] max-[900px]:!tracking-[-1px] max-[900px]:!origin-left">
             BECOME WHO YOU
             <br />
-            WERE <span>BUILT TO BE</span>.
+              WERE <span>BUILT TO BE</span>.
           </h1>
 
-          <p className="hero-description max-[900px]:!mx-0 max-[900px]:!mt-8 max-[900px]:!max-w-[290px] max-[900px]:!text-[15px] max-[900px]:!leading-[1.45]">
+          <p className="hero-description max-[900px]:!mx-0 max-[900px]:!mt-8 max-[900px]:!max-w-[290px] max-[900px]:!pl-3 max-[900px]:!text-[15px] max-[900px]:!leading-[1.45]">
             A performance gym built around you — data-led,
             tech-enabled, human-coached.
           </p>
