@@ -274,39 +274,3 @@ form label input:focus,
   border-radius: 3px;
 }
 
-/* ─── Buttons ─── */
-.submit-button,
-.demo-button {
-  width: 100%;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.submit-button {
-  height: 42px;
-  color: white;
-  background: var(--blue);
-  letter-spacing: 0.3px;
-}
-
-.submit-button:hover {
-  background: #4d88f6;
-}
-
-.demo-button {
-  height: 38px;
-  margin-top: 16px;
-  color: #969993;
-  border-color: #222622;
-  background: transparent;
-  text-transform: uppercase;
-  letter-spacing: 1.8px;
-  font-size: 9px;
-}
-
-.demo-button:hover {
-  border-color: #4c504b;
-  color: var(--paper);
-}

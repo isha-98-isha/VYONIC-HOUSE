@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './Signup.css'
 import corridorImage from '../../assets/corridor-BklKOuZO.jpg'
 import Navbar from '../../components/Navbar/Navbar'
+import Button from '../../components/Button/Button'
 
 function BrandMark({ compact = false }) {
   return (
@@ -197,15 +198,15 @@ function AuthCard() {
           </>
         )}
 
-        <button className="submit-button" type="submit">
+        <Button variant="submit" type="submit">
           {isSignIn ? 'Sign in' : 'Create account'}
-        </button>
+        </Button>
       </form>
 
       {isSignIn && (
-        <button className="demo-button" type="button">
+        <Button variant="demo" type="button">
           Explore as demo member
-        </button>
+        </Button>
       )}
     </section>
   )

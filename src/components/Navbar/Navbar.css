@@ -17,10 +17,11 @@
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 clamp(12px, 2.5vw, 20px);
+  padding: 0 clamp(12px, 2vw, 16px);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transform: scaleY(1);
 }
 
 .site-header__logo {

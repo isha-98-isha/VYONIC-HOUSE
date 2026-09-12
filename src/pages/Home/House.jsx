@@ -1,4 +1,5 @@
 import Navbar from '../../components/Navbar/Navbar'
+import Button from '../../components/Button/Button'
 import './House.css'
 import vyonicMark from '../../assets/vyonic-mark-BEL-OzHk.png'
 import {
@@ -20,8 +21,10 @@ function Home() {
 
       <main className="home">
         <section className="hero max-[900px]:!min-h-0 max-[900px]:!w-full max-[900px]:!px-4 max-[900px]:!pb-16 max-[900px]:!pt-32 max-[900px]:!pl-4">
-          <p className="signin-link max-[900px]:!top-16 max-[900px]:!right-4 max-[900px]:!left-auto max-[900px]:!m-0 max-[900px]:!text-[10px]">
-            <a href="/signup">SIGN IN</a>
+          <p className="signin-link max-[900px]:!top-16 max-[900px]:!right-4 max-[900px]:!left-auto max-[900px]:!m-0">
+            <Button variant="signin" href="/signup" className="max-[900px]:!text-[10px]">
+              SIGN IN
+            </Button>
           </p>
           <div className="hero-content max-[900px]:!top-16 max-[900px]:!left-4 max-[900px]:!m-0 max-[900px]:!text-[11px]">
             <p> 
@@ -47,10 +50,10 @@ function Home() {
             tech-enabled, human-coached.
           </p>
 
-          <button className="hero-button max-[900px]:!mt-7 max-[900px]:!max-w-full max-[900px]:!px-4 max-[900px]:!text-[10px] max-[900px]:!tracking-[2px]">
+          <Button variant="assessment" className="max-[900px]:!mt-7 max-[900px]:!max-w-full max-[900px]:!px-4 max-[900px]:!text-[10px] max-[900px]:!tracking-[2px]">
             START WITH YOUR ASSESSMENT
             <span>→</span>
-          </button>
+          </Button>
 
         </section>
       </main>
@@ -193,17 +196,17 @@ function Home() {
             <br className="max-[900px]:hidden" />
             <span> AN ASSESSMENT</span>.
           </h2>
-          <button className="assessment-button 
+          <Button variant="begin" className="
           max-[900px]:!gap-3 
           max-[900px]:!px-5 
           max-[900px]:!py-[14px] 
           max-[900px]:!text-[12px] 
           max-[900px]:!tracking-[2px] 
           max-[900px]:!transform-none" 
-          type="button">
+          >
             <span className="inline-block max-[900px]:!scale-y-[1.3]">BEGIN</span>
             <ArrowRight aria-hidden="true" />
-          </button>
+          </Button>
         </section>
 
         <footer className="site-footer max-[900px]:!grid max-[900px]:!h-[102px] max-[900px]:!w-[calc(100%-32px)] max-[900px]:!grid-cols-2 max-[900px]:!items-start max-[900px]:!gap-0 max-[900px]:!px-4 max-[900px]:!py-7">
