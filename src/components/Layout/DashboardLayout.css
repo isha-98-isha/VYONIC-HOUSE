@@ -113,7 +113,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 1.5rem 1.25rem;
-  background: #0a0a0a;
+  background: rgba(17, 16, 16, 0.98);
   border-right: 1px solid #262629;
   transition: transform 300ms ease-in-out;
 }
@@ -202,45 +202,44 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: auto;
+
   padding-top: 14px;
   border-top: 1px solid #2c2c29ab;
+  margin-bottom: -0.25rem;
 }
 
 .dashboard-account__details {
   min-width: 0;
-  padding-right: 0.5rem;
 }
 
 .dashboard-account__email {
   margin: 0;
   overflow: hidden;
-  color: #fff;
+  color: #ececd9;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-overflow: ellipsis;
+  letter-spacing: 0.06em;
+  transform: scaleY(1.1);
   white-space: nowrap;
 }
 
 .dashboard-account__role {
   display: block;
-  margin-top: 0.125rem;
-  color: #48484a;
-  font-size: 9px;
+  color: #82837f;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  transform: scaleY(1.1);
 }
 
 .dashboard-signout-button {
-  padding: 0.25rem;
-  color: #737373;
+  margin-right: -10px;
+  padding: 0.5rem ;
+  color: #d1cbcb;
   transition: color 150ms ease;
 }
 
 .dashboard-signout-button:hover {
-  color: #fff;
+  padding: 0.5rem 0.5rem;
 }
 
 .dashboard-icon--small {
@@ -251,7 +250,7 @@
 .dashboard-qr-action {
   position: fixed;
   right: 1.5rem;
-  bottom: 1.5rem;
+  bottom: 25px;
   z-index: 40;
 }
 
@@ -259,14 +258,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 60px;
+  height: 60px;
   color: #fff;
-  background: #2563eb;
+  background: #4076ec;
   border-radius: 9999px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
   transition: background-color 200ms ease, transform 200ms ease;
 }
+/* Target the Lucide SVG explicitly within the QR button wrapper */
+.dashboard-qr-button svg {
+  width: 24px !important;
+  height: 24px !important;
+  stroke-width: 2px; /* Optional: adjust thickness for a crisper look at 24px */
+}
+
 
 .dashboard-qr-button:hover {
   background: #1d4ed8;
@@ -289,6 +295,6 @@
 
 .dashboard-content {
   height: 100%;
-  max-width: 64rem;
+  max-width: 72.5rem;
   padding: 2rem 1rem;
 }

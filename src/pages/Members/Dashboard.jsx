@@ -45,7 +45,7 @@ export default function MembersDashboard() {
             LET'S GET YOU <br /><span className="whitespace-nowrap"><span className="members-dashboard__title-accent sm:inline">SET UP TO TRAIN</span>, STORE.</span>
           </h1>
           <p className="members-dashboard__description sm:text-base">
-            Four short steps and you're on the floor. Every member of the House starts the same way — because every member trains to a number.
+            Four short steps and you're on the floor. Every member of the House starts the same way — because every member trains to a <br/>number.
           </p>
         </div>
 
@@ -109,7 +109,7 @@ export default function MembersDashboard() {
                     </Button>
                   ) : (
                     <span className="assessment-step__locked-label whitespace-nowrap">
-                      LOCKED
+                      <b>LOCKED</b>
                     </span>
                   )}
                 </div>
