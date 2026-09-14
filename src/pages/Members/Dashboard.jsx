@@ -3,7 +3,7 @@ import Button from '../../components/Button/Button';
 import './Dashboard.css';
 
 export default function MembersDashboard() {
-  
+
   // Clean, reusable step list data architecture 
   const assessmentSteps = [
     {
@@ -34,19 +34,18 @@ export default function MembersDashboard() {
 
   return (
     <DashboardLayout>
-      <div className="members-dashboard w-full md:w-[calc(100%+140px)]">
-        
+      <div className="members-dashboard lg:pl-[230px]">
+
         {/* Responsive Header Section */}
         <div className="members-dashboard__header">
           <span className="members-dashboard__eyebrow sm:text-xs">
             <b>WELCOME · VYONIC HOUSE</b>
           </span>
           <h1 className="members-dashboard__title sm:text-4xl md:text-5xl">
-            LET'S GET YOU <br/>
-            <span className="members-dashboard__title-accent sm:inline">SET UP TO TRAIN</span>, STORE.
+            LET'S GET YOU <br /><span className="whitespace-nowrap"><span className="members-dashboard__title-accent sm:inline">SET UP TO TRAIN</span>, STORE.</span>
           </h1>
           <p className="members-dashboard__description sm:text-base">
-            Four short steps and you're on the floor. Every member of the <br/>House starts the same way — because every member trains to a <br/> number.
+            Four short steps and you're on the floor. Every member of the House starts the same way — because every member trains to a number.
           </p>
         </div>
 
@@ -57,36 +56,51 @@ export default function MembersDashboard() {
         <div className="members-dashboard__steps">
           {assessmentSteps.map((step) => {
             const isActive = step.status === 'active';
-            
+
             return (
               <div
                 key={step.id}
-                className={`assessment-step grid-cols-1 sm:grid-cols-[auto_1fr_auto] sm:gap-8 ${isActive ? 'assessment-step--active' : 'assessment-step--locked'}`}
+                className={`assessment-step ${isActive ? 'assessment-step--active' : 'assessment-step--locked'}`}
               >
-                
+
                 {/* 1. Counter Digits */}
                 <div className={`assessment-step__number ${isActive ? 'assessment-step__number--active' : 'assessment-step__number--locked'}`}>
                   {step.id}
                 </div>
 
-                {/* 2. Text Parameters */}
+                {/* 2. Dedicated Indicator Column — dot or lock, never inline with text */}
+                <div className="assessment-step__indicator" aria-hidden="true">
+                  {isActive ? (
+                    <span className="assessment-step__active-dot" />
+                  ) : (
+                    <svg
+                      className="assessment-step__lock-icon"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+                    </svg>
+                  )}
+                </div>
+
+                {/* 3. Text Content — title and description only, no icon */}
                 <div className="assessment-step__details">
-                  <h3 className={`assessment-step__title sm:text-base ${isActive ? '' : 'assessment-step__title--locked'}`}>
+                  <h3 className={`assessment-step__title ${isActive ? '' : 'assessment-step__title--locked'}`}>
                     {step.title}
                   </h3>
-                  <p className="assessment-step__description sm:text-sm">
+                  <p className="assessment-step__description">
                     {step.description}
                   </p>
                 </div>
 
                 {/* 3. Action / Lock Trigger Buttons */}
-                <div className="assessment-step__action sm:w-auto sm:justify-end sm:pt-0">
+                <div className="assessment-step__action">
                   {isActive ? (
                     // Using your exact reusable Button component with the 'begin' variant!
-                    <Button 
-                      variant="begin" 
+                    <Button
+                      variant="begin"
                       href="#begin"
-                      className="w-full justify-center sm:w-auto"
+                      className="w-full justify-center whitespace-nowrap sm:w-auto"
                     >
                       <b>BEGIN</b>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="assessment-step__button-icon">
@@ -94,7 +108,7 @@ export default function MembersDashboard() {
                       </svg>
                     </Button>
                   ) : (
-                    <span className="assessment-step__locked-label">
+                    <span className="assessment-step__locked-label whitespace-nowrap">
                       LOCKED
                     </span>
                   )}

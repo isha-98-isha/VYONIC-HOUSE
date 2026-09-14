@@ -1,21 +1,34 @@
 import { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './DashboardLayout.css';
+import vyonicMark from '../../assets/vyonic-mark-BEL-OzHk.png';
+import {
+  Home,
+  QrCode,
+  Route,
+  Calendar,
+  Dumbbell,
+  Activity,
+  Trophy,
+  ClipboardCheck,
+  Wallet,
+  User
+} from 'lucide-react';
 
 export default function DashboardLayout({ children }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigationItems = [
-    { name: 'Home', icon: '🏠', active: true },
-    { name: 'My VYONIC ID', icon: '🆔' },
-    { name: 'My journey', icon: '📈' },
-    { name: 'Schedule', icon: '📅' },
-    { name: 'Train', icon: '🏋️' },
-    { name: 'The Floor', icon: '👟' },
-    { name: 'Challenges', icon: '🏆' },
-    { name: 'My numbers', icon: '🔢' },
-    { name: 'Account', icon: '👤' },
-    { name: 'Me', icon: '🧑' },
+    { name: 'Home', icon: <Home size={16} />, active: true },
+    { name: 'My VYONIC ID', icon: <QrCode size={16} /> },
+    { name: 'My journey', icon: <Route size={16} /> },
+    { name: 'Schedule', icon: <Calendar size={16} /> },
+    { name: 'Train', icon: <Dumbbell size={16} /> },
+    { name: 'The Floor', icon: <Activity size={16} /> },
+    { name: 'Challenges', icon: <Trophy size={16} /> },
+    { name: 'My numbers', icon: <ClipboardCheck size={16} /> },
+    { name: 'Account', icon: <Wallet size={16} /> },
+    { name: 'Me', icon: <User size={16} /> },
   ];
 
   return (
@@ -24,46 +37,54 @@ export default function DashboardLayout({ children }) {
       <Navbar />
 
       {/* 2. SUB-HEADER BAR: Combines Logo block, Grey Member panel tag, and Mobile Trigger */}
-      <div className="dashboard-subheader px-4 sm:px-6 md:justify-start">
-        
-        {/* Left Side: Brand Flag & Section Segment Label */}
-        <div className="dashboard-brand-section">
-          {/* High Fidelity Logo with custom grey separator dot */}
-          <div className="dashboard-brand">
+      <div className="dashboard-subheader px-4 sm:px-6 flex justify-start items-center">
+
+        {/* LEFT SECTION (Syncs with Sidebar Width) */}
+        <div className={`flex items-center overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? 'w-[14rem]' : 'w-8 md:w-[14rem]'}`}>
+
+          {/* HAMBURGER (Leftmost, Mobile Only) */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className={`dashboard-menu-button flex-shrink-0 p-0 ${isMobileMenuOpen ? 'hidden' : 'flex md:hidden'}`}
+            aria-label="Toggle Navigation Drawer"
+          >
+            <svg className="dashboard-icon--menu" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          {/* VYONIC HOUSE BRANDING */}
+          <div className={`dashboard-brand transition-opacity duration-300 flex-shrink-0 flex items-center gap-2 ${isMobileMenuOpen ? 'ml-4 opacity-100' : 'ml-0 opacity-0 md:opacity-100'}`}>
+            <img src={vyonicMark} alt="VYONIC Logo" className="h-3.5 w-5.5 flex-shrink-0" />
             <span><b>VYONIC</b></span>
             <span className="dashboard-brand__dot">•</span>
             <span className="dashboard-brand__section">HOUSE</span>
           </div>
 
-          {/* Context header tag (Hidden on compact mobile screens, visible on wider frames) */}
-          <span className="dashboard-member-label hidden sm:inline-block">
-           <b>Member</b>
+        </div>
+
+        {/* MAIN/CONTENT SECTION */}
+        <div className="flex-1 flex items-center">
+          {/* Hidden on mobile when sidebar is open; always visible on desktop */}
+          <span className={`dashboard-member-label !static !pl-4 !py-0 items-center h-full ml-2 ${isMobileMenuOpen ? 'hidden md:flex' : 'flex'}`}>
+            <b>Member</b>
           </span>
         </div>
 
-        {/* Right Side: Clean 3-Dash Hamburger Button (Only displays on Mobile viewports) */}
-        <button 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-          className="dashboard-menu-button md:hidden"
-          aria-label="Toggle Navigation Drawer"
-        >
-          {isMobileMenuOpen ? (
-            // Close X Icon when active
-            <svg className="dashboard-icon--menu" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            // Premium 3-Dash Menu Bars Icon matching mockup view targets
-            <svg className="dashboard-icon--menu" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
-        </button>
       </div>
 
       {/* 3. CORE STRUCTURAL GRID WRAPPER */}
       <div className="dashboard-grid">
-        
+
+        {/* Mobile Backdrop Overlay (Dims content when sidebar is open) */}
+        {isMobileMenuOpen && (
+          <div
+            className="fixed inset-0 z-20 bg-black/60 md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+
         {/* SIDEBAR CONTAINER FRAME: Drops under header layers instantly */}
         <aside
           className={`dashboard-sidebar ${isMobileMenuOpen ? 'dashboard-sidebar--open translate-x-0' : '-translate-x-full'} md:translate-x-0`}
@@ -76,6 +97,7 @@ export default function DashboardLayout({ children }) {
                   key={item.name}
                   href={`#${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                   className={`dashboard-nav-link ${item.active ? 'dashboard-nav-link--active' : ''}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <span className="dashboard-nav-link__icon">{item.icon}</span>
                   <span>{item.name}</span>
@@ -104,7 +126,7 @@ export default function DashboardLayout({ children }) {
           <button className="dashboard-qr-button">
             {/* Embedded QR Code Grid Vector Visual */}
             <svg className="dashboard-icon--qr" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M3 3h6v6H3V3zm2 2v2h2V5H5zm8-2h6v6h-6V3zm2 2v2h2V5h-2zM3 13h6v6H3v-6zm2 2v2h2V5H5zm13-2h3v2h-3v-2zm-2 2h2v2h-2v-2zm2 2h3v2h-3v-2zm-2 2h2v2h-2v-2zm-2-4h2v2h-2v-2zm4-2h2v2h-2v-2z"/>
+              <path d="M3 3h6v6H3V3zm2 2v2h2V5H5zm8-2h6v6h-6V3zm2 2v2h2V5h-2zM3 13h6v6H3v-6zm2 2v2h2V5H5zm13-2h3v2h-3v-2zm-2 2h2v2h-2v-2zm2 2h3v2h-3v-2zm-2 2h2v2h-2v-2zm-2-4h2v2h-2v-2zm4-2h2v2h-2v-2z" />
             </svg>
           </button>
         </div>
