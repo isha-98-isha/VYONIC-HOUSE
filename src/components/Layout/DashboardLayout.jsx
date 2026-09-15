@@ -113,16 +113,16 @@ export default function DashboardLayout({ children }) {
             </nav>
           </div>
 
-                    {/* Authenticated Account Footer segment inside layout */}
+          {/* Authenticated Account Footer segment inside layout */}
           <div className="dashboard-account">
             <div className="dashboard-account__details">
               {/* Dynamically loads current user's email */}
               <p className="dashboard-account__email">
-                {user?.email || 'review.member@vyonic.house'}
+                {user?.email || 'demo.member@vyonic.house'}
               </p>
               {/* Dynamically loads current user's role */}
               <span className="dashboard-account__role">
-                {user?.role || 'client · member'}
+                {user?.role || 'client · demo'}
               </span>
             </div>
             {/* Exit/Logout Door Action Trigger */}

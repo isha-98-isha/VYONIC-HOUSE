@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Eye, EyeOff } from 'lucide-react'
 import './Signup.css'
 import corridorImage from '../../assets/corridor-BklKOuZO.jpg'
 import Navbar from '../../components/Navbar/Navbar'
@@ -24,15 +25,12 @@ function getStoredUsers() {
 function BrandMark({ compact = false }) {
     return (
         <div className={`brand-mark ${compact ? 'brand-mark--compact' : ''}`} aria-label="Vyonic House">
-            
-            {/* Replaced SVG with the imported image asset */}
             <img 
                 src={vyonicLogo} 
                 alt="Vyonic Logo" 
                 className="brand-mark_wing" 
                 aria-hidden="true" 
             />
-
             <h3>VYONIC</h3>
             <span className="brand-mark__dot" aria-hidden="true">
                 •
@@ -78,12 +76,12 @@ function BrandVisual() {
 function AuthCard() {
   const [mode, setMode] = useState('signin')
   const [showPassword, setShowPassword] = useState(false)
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState(null)
   const isSignIn = mode === 'signin'
 
   const changeMode = (nextMode) => {
     setMode(nextMode)
-    setMessage('')
+    setMessage(null)
     setShowPassword(false)
   }
 
@@ -97,7 +95,7 @@ function AuthCard() {
 
     if (isSignIn) {
       if (storedUsers.length === 0) {
-        setMessage('Create an account before signing in.')
+        setMessage({ text: 'Create an account before signing in.', type: 'error' })
         return
       }
 
@@ -105,17 +103,21 @@ function AuthCard() {
         storedUser.email === email && storedUser.password === password
       ))
       if (!user) {
-        setMessage('The email or password is incorrect.')
+        setMessage({ text: 'The email or password is incorrect.', type: 'error' })
         return
       }
 
-      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify({ email: user.email }))
+      // 2. Enhanced the session storage object to include a dynamic role flag
+      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify({ 
+        email: user.email, 
+        role: 'client · member' 
+      }))
       window.location.assign('/dashboard')
       return
     }
 
     if (storedUsers.some((storedUser) => storedUser.email === email)) {
-      setMessage('An account already exists. Please sign in.')
+      setMessage({ text: 'An account already exists. Please sign in.', type: 'error' })
       return
     }
 
@@ -129,7 +131,7 @@ function AuthCard() {
       privacyAccepted: formData.get('privacy') === 'on',
     }
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify([...storedUsers, newUser]))
-    setMessage('Account created. Please sign in.')
+    setMessage({ text: 'Account created. Please sign in.', type: 'success' })
     setMode('signin')
     setShowPassword(false)
   }
@@ -164,7 +166,11 @@ function AuthCard() {
         </button>
       </div>
 
-      {message && <p className="auth-card__message" role="alert">{message}</p>}
+      {message && (
+        <p className={`auth-card__message auth-card__message--${message.type}`} role="alert">
+          {message.text}
+        </p>
+      )}
 
       <form key={mode} onSubmit={handleSubmit}>
         {!isSignIn ? (
@@ -216,7 +222,8 @@ function AuthCard() {
                 onClick={() => setShowPassword((visible) => !visible)}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? 'Hide' : 'Show'}
+                {/* 3. Swapped Create Password Text with Icons */}
+                {showPassword ? <Eye size={16} /> : <EyeOff size={16} />}
               </button>
             </div>
 
@@ -269,7 +276,8 @@ function AuthCard() {
                 onClick={() => setShowPassword((visible) => !visible)}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? 'Hide' : 'Show'}
+                {/* 4. Swapped Sign In Password Text with Icons */}
+                {showPassword ? <Eye size={16} /> : <EyeOff size={16} />}
               </button>
             </div>
           </>
@@ -281,7 +289,7 @@ function AuthCard() {
       </form>
 
       {isSignIn && (
-        <Button variant="demo" type="button">
+        <Button href="/dashboard" variant="demo" type="button">
           Explore as demo member
         </Button>
       )}

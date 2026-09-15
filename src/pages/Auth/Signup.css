@@ -187,10 +187,17 @@ h1 strong {
 
 .auth-card__message {
   margin: -4px 0 16px;
-  color: #d30909;
   font-size: 12px;
   line-height: 1.4;
   text-align: center;
+}
+
+.auth-card__message--error {
+  color: #f06a6a;
+}
+
+.auth-card__message--success {
+  color: #63d38a;
 }
 
 /* ─── Form labels ─── */
@@ -233,7 +240,7 @@ form label input:focus,
 .password-toggle {
   border: 0;
   padding: 0;
-  color: #a2a49f;
+  color: #ffffff;
   background: transparent;
   font-size: 11px;
   letter-spacing: 0.2px;
