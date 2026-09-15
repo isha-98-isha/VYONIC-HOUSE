@@ -5,6 +5,8 @@
   display: grid;
   grid-template-columns: 50% 50%;
   background: #0e0f11;
+ margin-top: 30px;
+  height: 440px;
 }
 
 /* ─── Left: corridor image with exact live blue hue & overlays ─── */
@@ -38,7 +40,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(24px, 3.5vw, 52px) clamp(32px, 4.2vw, 64px);
+  margin-top: 10px;
+  padding-left: 55px;
   background: linear-gradient(105deg, #0d0e0d, #090a09 70%);
 }
 
@@ -47,42 +50,53 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.brand-mark_wing {
+    width: 24px;   /* Match your original SVG viewBox width or desired size */
+    height: 24px;  /* Match your original SVG viewBox height or desired size */
+    object-fit: contain;
+}
+.brand-mark h3  {
+  font-size: 11px;
+  transform-origin: left center;
+  transform: scaleY(1.50);
   color: #e9eee9;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-}
-
-.brand-mark__wing {
-  width: 12px;
-  height: 9px;
-  color: #aab4b1;
-  display: inline-block;
+  letter-spacing: 3px;
 }
 
 .brand-mark__dot {
   color: var(--blue);
-  font-size: 8px;
+  font-size: 14px;
 }
-
+.brand-mark h5 {
+  transform-origin: left center;
+  transform: scaleX(0.9) scaleY(1.50);
+  color: #b5b9b5;
+  font-size: 8px;
+  letter-spacing: 3px;
+}
 /* ─── Eyebrow ─── */
 .eyebrow {
-  margin: 16px 0 10px;
-  color: #787c7b;
+  margin: 20px 0 10px;
+  color: #a2a8a7;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 2.2px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
+  transform-origin: left center;
+  transform: scaleX(0.9) scaleY(1.45);
 }
 
 /* ─── Main text: H1 heading ─── */
 h1 {
-  margin: 0;
+  margin-top: 10px;
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 56px;
   font-weight: 600;
-  line-height: 0.95;
+  line-height: 0.9;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #f3f4f6;
@@ -98,6 +112,7 @@ h1 strong {
 /* ─── Description & signature ─── */
 .brand-copy__description {
   max-width: 380px;
+  padding-top: 8px;
   margin: 18px 0 0;
   color: rgb(157, 160, 157);
   font-size: 14px;
@@ -123,7 +138,7 @@ h1 strong {
   flex: 0 0 auto;
   width: 448px;
   max-width: calc(100% - 32px);
-  margin: 40px 0 48px max(24px, calc(25% - 224px + 28px));
+  margin: 40px 0 48px max(24px, calc(25% - 224px + 0px));
   padding: 32px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
@@ -135,11 +150,12 @@ h1 strong {
 
 /* ─── Auth card intro text ─── */
 .auth-card__intro {
+
   margin: 0 0 16px;
   color: #8a8c87;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.45;
-  text-align: left;
+  text-align: center;
 }
 
 /* ─── Tabs ─── */
@@ -154,12 +170,12 @@ h1 strong {
 
 .auth-tabs button {
   border: 0;
-  padding: 9px 8px;
+  padding: 4px 8px;
   color: #909188;
   background: transparent;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.3px;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.15s ease;
 }
 
@@ -169,13 +185,21 @@ h1 strong {
   background: #090a09;
 }
 
+.auth-card__message {
+  margin: -4px 0 16px;
+  color: #d30909;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
 /* ─── Form labels ─── */
 form label,
 .field-heading {
   display: block;
   color: #c8cac3;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 900;
   letter-spacing: 0.2px;
 }
 

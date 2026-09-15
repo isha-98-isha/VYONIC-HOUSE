@@ -196,7 +196,7 @@ function Home() {
             <br className="max-[900px]:hidden" />
             <span> AN ASSESSMENT</span>.
           </h2>
-          <Button variant="begin" className="
+          <Button variant="begin" href="/signup" className="
           max-[900px]:!gap-3 
           max-[900px]:!px-5 
           max-[900px]:!py-[14px] 

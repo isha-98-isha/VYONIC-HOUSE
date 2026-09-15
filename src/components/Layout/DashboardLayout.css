@@ -240,6 +240,8 @@
 
 .dashboard-signout-button:hover {
   padding: 0.5rem 0.5rem;
+  background: #2a7fee;
+  border-radius: 10%;
 }
 
 .dashboard-icon--small {

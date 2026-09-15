@@ -16,7 +16,14 @@ import {
 } from 'lucide-react';
 
 export default function DashboardLayout({ children }) {
+   const userSession = localStorage.getItem('vyonicSession');
+  const user = userSession ? JSON.parse(userSession) : null;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleSignOut = () => {
+    localStorage.removeItem('vyonicSession');
+    window.location.assign('/signup');
+  };
 
   const navigationItems = [
     { name: 'Home', icon: <Home size={16} />, active: true },
@@ -106,19 +113,26 @@ export default function DashboardLayout({ children }) {
             </nav>
           </div>
 
-          {/* Authenticated Account Footer segment inside layout */}
+                    {/* Authenticated Account Footer segment inside layout */}
           <div className="dashboard-account">
             <div className="dashboard-account__details">
-              <p className="dashboard-account__email">review.member@vyonic.house</p>
-              <span className="dashboard-account__role">client · member</span>
+              {/* Dynamically loads current user's email */}
+              <p className="dashboard-account__email">
+                {user?.email || 'review.member@vyonic.house'}
+              </p>
+              {/* Dynamically loads current user's role */}
+              <span className="dashboard-account__role">
+                {user?.role || 'client · member'}
+              </span>
             </div>
             {/* Exit/Logout Door Action Trigger */}
-            <button className="dashboard-signout-button" aria-label="Sign Out">
+            <button className="dashboard-signout-button" aria-label="Sign Out" onClick={handleSignOut}>
               <svg className="dashboard-icon--small" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
             </button>
           </div>
+
         </aside>
 
         {/* FIXED CIRCULAR QR FLOATING ACTION BUTTON */}

@@ -3,28 +3,43 @@ import './Signup.css'
 import corridorImage from '../../assets/corridor-BklKOuZO.jpg'
 import Navbar from '../../components/Navbar/Navbar'
 import Button from '../../components/Button/Button'
+import vyonicLogo from '../../assets/vyonic-mark-BEL-OzHk.png';
+
+const USER_STORAGE_KEY = 'vyonicUser'
+const SESSION_STORAGE_KEY = 'vyonicSession'
+
+function getStoredUsers() {
+  const storedUsers = localStorage.getItem(USER_STORAGE_KEY)
+  if (!storedUsers) return []
+
+  try {
+    const parsedUsers = JSON.parse(storedUsers)
+    return Array.isArray(parsedUsers) ? parsedUsers : [parsedUsers]
+  } catch {
+    localStorage.removeItem(USER_STORAGE_KEY)
+    return []
+  }
+}
 
 function BrandMark({ compact = false }) {
-  return (
-    <div
-      className={`brand-mark${compact ? ' brand-mark--compact' : ''}`}
-      aria-label="Vyonic House"
-    >
-      <svg
-        className="brand-mark__wing"
-        viewBox="0 0 24 16"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path d="M0 0 L12 16 L24 0 L18 0 L12 8 L6 0 Z" />
-      </svg>
-      <span>VYONIC</span>
-      <span className="brand-mark__dot" aria-hidden="true">
-        •
-      </span>
-      <span>HOUSE</span>
-    </div>
-  )
+    return (
+        <div className={`brand-mark ${compact ? 'brand-mark--compact' : ''}`} aria-label="Vyonic House">
+            
+            {/* Replaced SVG with the imported image asset */}
+            <img 
+                src={vyonicLogo} 
+                alt="Vyonic Logo" 
+                className="brand-mark_wing" 
+                aria-hidden="true" 
+            />
+
+            <h3>VYONIC</h3>
+            <span className="brand-mark__dot" aria-hidden="true">
+                •
+            </span>
+            <h5>HOUSE</h5>
+        </div>
+    );
 }
 
 function BrandVisual() {
@@ -63,7 +78,61 @@ function BrandVisual() {
 function AuthCard() {
   const [mode, setMode] = useState('signin')
   const [showPassword, setShowPassword] = useState(false)
+  const [message, setMessage] = useState('')
   const isSignIn = mode === 'signin'
+
+  const changeMode = (nextMode) => {
+    setMode(nextMode)
+    setMessage('')
+    setShowPassword(false)
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    const email = String(formData.get('email')).trim().toLowerCase()
+    const password = String(formData.get('password'))
+    const storedUsers = getStoredUsers()
+
+    if (isSignIn) {
+      if (storedUsers.length === 0) {
+        setMessage('Create an account before signing in.')
+        return
+      }
+
+      const user = storedUsers.find((storedUser) => (
+        storedUser.email === email && storedUser.password === password
+      ))
+      if (!user) {
+        setMessage('The email or password is incorrect.')
+        return
+      }
+
+      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify({ email: user.email }))
+      window.location.assign('/dashboard')
+      return
+    }
+
+    if (storedUsers.some((storedUser) => storedUser.email === email)) {
+      setMessage('An account already exists. Please sign in.')
+      return
+    }
+
+    const newUser = {
+      fullName: String(formData.get('fullname')).trim(),
+      email,
+      phone: String(formData.get('phone')).trim(),
+      password,
+      termsAccepted: formData.get('terms') === 'on',
+      waiverAccepted: formData.get('waiver') === 'on',
+      privacyAccepted: formData.get('privacy') === 'on',
+    }
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify([...storedUsers, newUser]))
+    setMessage('Account created. Please sign in.')
+    setMode('signin')
+    setShowPassword(false)
+  }
 
   return (
     <section
@@ -77,7 +146,7 @@ function AuthCard() {
       <div className="auth-tabs" role="tablist" aria-label="Account options">
         <button
           className={isSignIn ? 'is-selected' : ''}
-          onClick={() => setMode('signin')}
+          onClick={() => changeMode('signin')}
           type="button"
           role="tab"
           aria-selected={isSignIn}
@@ -86,7 +155,7 @@ function AuthCard() {
         </button>
         <button
           className={!isSignIn ? 'is-selected' : ''}
-          onClick={() => setMode('create')}
+          onClick={() => changeMode('create')}
           type="button"
           role="tab"
           aria-selected={!isSignIn}
@@ -95,12 +164,14 @@ function AuthCard() {
         </button>
       </div>
 
-      <form onSubmit={(event) => event.preventDefault()}>
+      {message && <p className="auth-card__message" role="alert">{message}</p>}
+
+      <form key={mode} onSubmit={handleSubmit}>
         {!isSignIn ? (
           <>
             <label htmlFor="fullname">
               Full name
-              <input id="fullname" name="fullname" type="text" autoComplete="name" required />
+              <input id="fullname" name="fullname" type="text" autoComplete="name" minLength="2" required />
             </label>
 
             <label htmlFor="email">
@@ -116,7 +187,14 @@ function AuthCard() {
 
             <label htmlFor="phone">
               Phone
-              <input id="phone" name="phone" type="tel" autoComplete="tel" required />
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                pattern="[+0-9 ()\-]{7,}"
+                required
+              />
             </label>
 
             <div className="field-heading">
@@ -129,6 +207,7 @@ function AuthCard() {
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 autoComplete="new-password"
+                minLength="8"
                 required
               />
               <button
@@ -164,7 +243,6 @@ function AuthCard() {
                 id="email"
                 name="email"
                 type="email"
-                defaultValue="review.admin@vyonic.house"
                 autoComplete="email"
                 required
               />
@@ -182,7 +260,6 @@ function AuthCard() {
                 id="password"
                 name="password"
                 type={showPassword ? 'text' : 'password'}
-                defaultValue="vyonic-house-2026"
                 autoComplete="current-password"
                 required
               />
